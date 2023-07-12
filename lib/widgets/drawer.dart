@@ -41,7 +41,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
-        children: [
+        children: <Widget>[
           DrawerHeader(
             decoration: const BoxDecoration(
               // transparent background
@@ -66,16 +66,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     // height: 200,
                     child: Column(
                       children: [
-                        // image from url
-                        // Image.network(
-                        //   'https://www.flaticon.com/svg/static/icons/svg/3523/3523063.svg',
-                        //   height: 100,
-                        //   width: 100,
-                        // ),
-                        SizedBox(
-                            height: 65, child: CustomImages().openWeatherLogo),
-                        Text('Weather Api',
-                            style: CustomTextStyle.drawerTitleFont),
+                        CustomImages().openWeatherLogo,
                       ],
                     ),
                   ),
@@ -103,13 +94,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               child: ListView(
                 children: [
                   ListTile(
-                    title: const Row(
+                    title: Row(
                       children: [
-                        Icon(CustomAppIcons.windWIcon),
-                        SizedBox(
+                        Icon(CustomFAIcons.windFAIcon),
+                        const SizedBox(
                           width: 20.0,
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: Text(
                             'Wind',
@@ -134,13 +125,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     },
                   ),
                   ListTile(
-                    title: const Row(
+                    title: Row(
                       children: [
-                        Icon(CustomAppIcons.humiditywIcon),
-                        SizedBox(
+                        Icon(CustomFAIcons.humidityFAIcon),
+                        const SizedBox(
                           width: 20.0,
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: Text(
                             'Humidity',
@@ -163,13 +154,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     },
                   ),
                   ListTile(
-                    title: const Row(
+                    title: Row(
                       children: [
-                        Icon(CustomAppIcons.pressureWIcon),
-                        SizedBox(
+                        Icon(CustomFAIcons.pressureFAIcon),
+                        const SizedBox(
                           width: 20.0,
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: Text(
                             'Pressure',
@@ -192,13 +183,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     },
                   ),
                   ListTile(
-                    title: const Row(
+                    title: Row(
                       children: [
-                        Icon(CustomAppIcons.feelsLikeWIcon),
-                        SizedBox(
+                        Icon(CustomFAIcons.feelsLikeFAIcon),
+                        const SizedBox(
                           width: 20.0,
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: Text('Feels Like',
                               style: CustomTextStyle.drawerFont),

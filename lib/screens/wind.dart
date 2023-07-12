@@ -10,10 +10,10 @@ class WindPage extends StatelessWidget {
   final int? windDeg;
   final double? windGust;
 
-  const WindPage(
+  WindPage(
       {super.key, this.windSpeed, this.windDeg, this.windGust, this.location});
-  final Icon windIcon = const Icon(
-    Icons.air,
+  final Icon windIcon = Icon(
+    CustomFAIcons.windFAIcon,
     size: 64.0,
   );
 
@@ -21,8 +21,14 @@ class WindPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: CustomAppColors.appBarColor,
+        ),
         centerTitle: true,
-        title: const Text("Wind"),
+        title: const Text(
+          "Wind",
+          style: CustomTextStyle.appBarFont,
+        ),
       ),
       body: Column(
         children: [
@@ -50,7 +56,7 @@ class WindPage extends StatelessWidget {
           const Divider(),
           const Text(
             "Details",
-            style: CustomTextStyle.biggerTitleFont,
+            style: CustomTextStyle.detailsTitleFont,
           ),
           const Divider(),
           Padding(

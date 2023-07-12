@@ -40,6 +40,7 @@ dependencies:
   flutter_slider_drawer: ^2.1.3
   intl: ^0.18.1
   google_fonts: ^5.1.0
+  font_awesome_flutter: ^10.5.0
 
 dev_dependencies:
   flutter_test:
@@ -80,13 +81,16 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: MavenPro
-      fonts:
-        - asset: assets\fonts\MavenPro-VariableFont_wght.ttf
+
           
     - family: Comfortaa
       fonts:
         - asset: assets\fonts\Comfortaa-VariableFont_wght.ttf
+        - asset: assets\fonts\Comfortaa-Bold.ttf
+        - asset: assets\fonts\Comfortaa-Light.ttf
+        - asset: assets\fonts\Comfortaa-Medium.ttf
+        - asset: assets\fonts\Comfortaa-Regular.ttf
+        - asset: assets\fonts\Comfortaa-SemiBold.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

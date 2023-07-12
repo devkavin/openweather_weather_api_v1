@@ -13,20 +13,38 @@ Widget currentHumidity(Icon humidityIcon, String humidity, String location) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: humidityIcon,
+          padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+          child: SizedBox(height: 60, child: humidityIcon),
         ),
-        const SizedBox(
-          height: 20.0,
-        ),
-        Text("$humidity %", style: CustomTextStyle.addInfoMainFont),
+        SizedBox(
+            height: 80,
+            child: Text("$humidity%", style: CustomTextStyle.addInfoMainFont)),
         const SizedBox(
           height: 10.0,
         ),
-        Text(
-            // cityName from Weather
-            location,
-            style: CustomTextStyle.titleFont),
+        SizedBox(
+          height: 40,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                CustomFAIcons.locationFAIcon,
+                color: CustomAppColors.smallIconColor,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                  // cityName from Weather
+                  location,
+                  style: CustomTextStyle.addInfoTitleFont),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 10.0,
+        ),
       ],
     ),
   );

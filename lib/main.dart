@@ -4,6 +4,15 @@ import 'widgets/constants.dart';
 
 import 'screens/homepage.dart';
 
+// IMPORTANT
+
+// ADD YOUR API KEY TO lib\api_calling\api_key.dart like this:
+//
+// class ApiKey {
+//   static const String myApiKey = 'YOUR_API_KEY_HERE';
+// }
+//
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {

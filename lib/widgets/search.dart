@@ -30,17 +30,20 @@ class Search extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
         child: TextField(
           controller: controller,
+          style: CustomTextStyle.searchFont,
           decoration: const InputDecoration(
               hintText: 'Search City..',
               hintStyle: CustomTextStyle.searchFont,
               contentPadding: EdgeInsets.fromLTRB(0, 5, 0, 0),
               prefixIcon: Icon(
                 Icons.search,
+                color: CustomAppColors.textColor,
               ),
               border: OutlineInputBorder(
-                  // style when not clicked
-
-                  ),
+                // style when not clicked
+                // invisible border
+                borderSide: BorderSide.none,
+              ),
               focusedBorder: OutlineInputBorder(
                 // style when clicked
                 borderRadius: BorderRadius.all(Radius.circular(50)),

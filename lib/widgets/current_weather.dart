@@ -11,6 +11,7 @@ Widget currentWeather(String weatherIcon, String weatherDescription,
   // weather?.cityName = location;
   String iconImageUrl = "https://openweathermap.org/img/wn/$weatherIcon@4x.png";
   String locationCaps = location.toUpperCase();
+  String weatherDescCaps = weatherDescription.toUpperCase();
 
   Image weatherIconImage = Image.network(
     iconImageUrl,
@@ -27,24 +28,41 @@ Widget currentWeather(String weatherIcon, String weatherDescription,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(height: 100.0, child: weatherIconImage),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-          child: Text(
-            '$locationCaps, $country',
-            style: CustomTextStyle.locationfont,
+        SizedBox(
+          height: 40,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                CustomFAIcons.locationFAIcon,
+                // color: CustomAppColors.smallIconColor,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                '$locationCaps, $country',
+                style: CustomTextStyle.locationfont,
+              ),
+            ],
           ),
         ),
+        SizedBox(
+          height: 25.0,
+          child: Text(
+            // cityName from Weather
+            weatherDescCaps,
+            style: CustomTextStyle.weatherDescFont,
+          ),
+        ),
+        // const SizedBox(
+        //   height: 10.0,
+        // ),
         Text(
           "$temp°",
           style: CustomTextStyle.tempMainFont,
-        ),
-        Text(
-          // cityName from Weather
-          weatherDescription,
-          style: CustomTextStyle.weatherDescFont,
-        ),
-        SizedBox(
-          height: 10.0,
         ),
       ],
     ),

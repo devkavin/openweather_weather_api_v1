@@ -51,8 +51,12 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: CustomAppColors.appBarColor,
+          ),
           title: const Text(
             'Weather Api',
+            style: CustomTextStyle.appBarFont,
           ),
           centerTitle: true,
           actions: [
@@ -117,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             const Divider(),
                             const Text(
-                              "Additional Information",
+                              "Details",
                               style: CustomTextStyle.biggerTitleFont,
                             ),
                             const Divider(),
