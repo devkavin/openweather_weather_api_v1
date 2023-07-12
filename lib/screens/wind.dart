@@ -14,7 +14,6 @@ class WindPage extends StatelessWidget {
       {super.key, this.windSpeed, this.windDeg, this.windGust, this.location});
   final Icon windIcon = const Icon(
     Icons.air,
-    color: Colors.blue,
     size: 64.0,
   );
 
@@ -27,9 +26,26 @@ class WindPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            child: currentWind(
-                windIcon, '$windDeg', '$windGust', '$windSpeed', '$location'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.blue,
+                      Colors.lightBlueAccent,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                  border: Border()),
+              child: currentWind(
+                  windIcon, '$windDeg', '$windGust', '$windSpeed', '$location'),
+            ),
           ),
           const Divider(),
           const Text(
@@ -37,7 +53,25 @@ class WindPage extends StatelessWidget {
             style: CustomTextStyle.biggerTitleFont,
           ),
           const Divider(),
-          additionalWindInformation('$windDeg', '$windGust'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Colors.blue,
+                        Colors.lightBlueAccent,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                    border: Border()),
+                child: additionalWindInformation('$windDeg', '$windGust')),
+          ),
         ],
       ),
     );

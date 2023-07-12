@@ -12,12 +12,12 @@ class CustomAppColors {
   static const Color drawerTextColor = Color.fromARGB(255, 0, 0, 0);
   static const Color infoTextColor = Color.fromARGB(255, 44, 44, 44);
   static const Color weatherDescColor = Color.fromARGB(255, 59, 59, 59);
-  static const Color backgroundColor = Color.fromARGB(255, 25, 25, 26);
+  // static const Color backgroundColor = Color.fromARGB(255, 25, 25, 26);
   // static const Color locationColor = Color.fromARGB(255, 0, 0, 0);
   // static const Color impTextColor = Color.fromARGB(255, 73, 73, 73);
   // static const Color textColor = Color.fromARGB(255, 136, 136, 136);
   static const Color biggerTitleColor = Color.fromARGB(255, 59, 59, 59);
-  // static const Color backgroundColor = Color.fromARGB(255, 255, 255, 255);
+  static const Color backgroundColor = Color.fromARGB(255, 255, 255, 255);
 }
 
 class CustomTextStyle {
