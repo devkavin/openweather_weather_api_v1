@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import '../model/location_model.dart';
 
-import '../model/weather_model.dart';
+import 'dart:math' as math;
+
 import 'constants.dart';
 
-Widget currentWind(Icon windIcon, String windDegree, String windGust,
+Widget currentWind(Transform windIcon, int? windDegree, String windGust,
     String windSpeed, String location) {
-  Weather? weather;
-  weather?.cityName = location;
+  LocationInfo? locationInfo;
+  locationInfo?.cityName = location;
+
+  var windDirectionIconLargeWidget;
+
+  // getWindDirectionIcon(degrees) {
+  //   windDirectionIconLargeWidget = Transform.rotate(
+  //     angle: degrees! * math.pi,
+  //     child: Icon(
+  //       CustomFAIcons.windDirectionFAIcon,
+  //       size: 64.0,
+  //     ),
+  //   );
+  //   return windDirectionIconLargeWidget;
+  // }
 
   return Center(
     child: Column(

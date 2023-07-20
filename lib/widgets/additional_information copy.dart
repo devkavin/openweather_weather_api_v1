@@ -19,6 +19,47 @@ Widget additionalInformation(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
+                  'wind',
+                  style: CustomTextStyle.titleFont,
+                ),
+                SizedBox(
+                  height: 18.0,
+                ),
+                Text(
+                  'Pressure',
+                  style: CustomTextStyle.titleFont,
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '$wind m/s',
+                  style: CustomTextStyle.infoFont,
+                ),
+                const SizedBox(
+                  height: 18.0,
+                ),
+                Text(
+                  '$pressure hPa',
+                  style: CustomTextStyle.infoFont,
+                ),
+              ],
+            ),
+            const Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Humidity',
+                  style: CustomTextStyle.titleFont,
+                ),
+                SizedBox(
+                  height: 18.0,
+                ),
+                Text(
                   'Feels Like',
                   style: CustomTextStyle.titleFont,
                 ),
@@ -27,17 +68,14 @@ Widget additionalInformation(
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
-            ),
-            const Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  '$humidity %',
+                  style: CustomTextStyle.infoFont,
+                ),
+                const SizedBox(
+                  height: 18.0,
+                ),
                 Text(
                   '$feelsLike °C',
                   style: CustomTextStyle.infoFont,

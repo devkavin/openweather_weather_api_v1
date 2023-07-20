@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:openweather_weather_api_v1/widgets/constants.dart';
+import '../widgets/constants.dart';
 
 Widget additionalWindInformation(String windDeg, String windGust) {
+  // Diplay FA Icon based on wind direction
+
+  Transform windDirectionIconSmallWidget;
+
+  // rotate windDirection Icon based on wind degree
+  windDirectionIconSmallWidget = Transform.rotate(
+    angle: double.parse(windDeg) * 3.14,
+    child: Icon(
+      CustomFAIcons.windDirectionFAIcon,
+      size: 20.0,
+    ),
+  );
+
   return Container(
     width: double.infinity,
     padding: const EdgeInsets.all(18.0),
@@ -13,7 +26,7 @@ Widget additionalWindInformation(String windDeg, String windGust) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -21,7 +34,7 @@ Widget additionalWindInformation(String windDeg, String windGust) {
                   'Wind Degree',
                   style: CustomTextStyle.titleFont,
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 18.0,
                 ),
                 Text(
@@ -34,9 +47,17 @@ Widget additionalWindInformation(String windDeg, String windGust) {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '$windDeg°',
-                  style: CustomTextStyle.infoFont,
+                Row(
+                  children: [
+                    Text(
+                      '$windDeg°',
+                      style: CustomTextStyle.infoFont,
+                    ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    windDirectionIconSmallWidget,
+                  ],
                 ),
                 const SizedBox(
                   height: 18.0,

@@ -1,7 +1,6 @@
 // class to store constant icons for the app
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:weather_icons/weather_icons.dart';
 
 class CustomColors {
   // dark mode color pallette
@@ -53,6 +52,12 @@ class CustomTextStyle {
       fontWeight: FontWeight.bold,
       fontSize: 24.0);
 
+  static const TextStyle appBarFont = TextStyle(
+    // if text overflows, go to next line
+    color: CustomAppColors.appBarColor,
+    fontWeight: FontWeight.w800,
+    fontSize: 24.0,
+  );
   static const TextStyle drawerTitleFont = TextStyle(
     // if text overflows, go to next line
     overflow: TextOverflow.ellipsis,
@@ -67,12 +72,6 @@ class CustomTextStyle {
       fontWeight: FontWeight.w700,
       fontSize: 24.0,
       letterSpacing: 2.0);
-  static const TextStyle appBarFont = TextStyle(
-    // if text overflows, go to next line
-    color: CustomAppColors.appBarColor,
-    fontWeight: FontWeight.w800,
-    fontSize: 24.0,
-  );
   static const TextStyle locationfont = TextStyle(
       // if text overflows, go to next line
       overflow: TextOverflow.ellipsis,
@@ -97,7 +96,7 @@ class CustomTextStyle {
   );
   static const TextStyle biggerTitleFont = TextStyle(
       color: CustomAppColors.biggerTitleColor,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.bold,
       fontSize: 24.0);
   static const TextStyle detailsTitleFont = TextStyle(
       color: CustomAppColors.detailsTitleColor,
@@ -109,7 +108,13 @@ class CustomTextStyle {
       fontWeight: FontWeight.bold,
       fontSize: 18.0);
   static const TextStyle searchFont =
-      TextStyle(color: CustomAppColors.textColor, fontSize: 18.0);
+      TextStyle(color: CustomAppColors.textColor, fontSize: 18.0, height: 1.4);
+  static const TextStyle cardTempFont = TextStyle(
+    color: CustomAppColors.metricTextColor,
+    fontFamily: 'Comfortaa-Bold',
+    fontWeight: FontWeight.w600,
+    fontSize: 24.0,
+  );
 }
 
 // class CustomAppIcons {
@@ -125,6 +130,7 @@ class CustomFAIcons {
   static IconData pressureFAIcon = FontAwesomeIcons.gauge;
   static IconData windFAIcon = FontAwesomeIcons.wind;
   static IconData locationFAIcon = FontAwesomeIcons.locationDot;
+  static IconData windDirectionFAIcon = FontAwesomeIcons.locationArrow;
 }
 
 class CustomImages {
@@ -141,4 +147,9 @@ class CustomImages {
   static String get logoImageUrl =>
       // 'https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/android-app-top-banner.png';
       'https://brands.home-assistant.io/_/openweathermap/logo.png';
+}
+
+class Urls {
+  static const String openWeatherMapApiIconUrl =
+      'http://openweathermap.org/img/wn/';
 }

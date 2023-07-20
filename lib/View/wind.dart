@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:openweather_weather_api_v1/widgets/constants.dart';
+import '../widgets/constants.dart';
 
 import '../widgets/additional_wind_information.dart';
 import '../widgets/current_wind.dart';
+
+import 'dart:math' as math;
 
 class WindPage extends StatelessWidget {
   final String? location;
@@ -12,10 +14,24 @@ class WindPage extends StatelessWidget {
 
   WindPage(
       {super.key, this.windSpeed, this.windDeg, this.windGust, this.location});
+
   final Icon windIcon = Icon(
     CustomFAIcons.windFAIcon,
     size: 64.0,
   );
+
+  var windDirectionIconLargeWidget;
+
+  getWindDirectionIcon(degrees) {
+    windDirectionIconLargeWidget = Transform.rotate(
+      angle: degrees! * math.pi,
+      child: Icon(
+        CustomFAIcons.windDirectionFAIcon,
+        size: 64.0,
+      ),
+    );
+    return windDirectionIconLargeWidget;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +41,18 @@ class WindPage extends StatelessWidget {
           color: CustomAppColors.appBarColor,
         ),
         centerTitle: true,
+        actions: [
+          // refresh button
+          IconButton(
+            onPressed: () {
+              debugPrint("$windDeg $windGust $windSpeed $location");
+            },
+            icon: const Icon(
+              Icons.refresh,
+              color: CustomAppColors.appBarColor,
+            ),
+          ),
+        ],
         title: const Text(
           "Wind",
           style: CustomTextStyle.appBarFont,
@@ -49,8 +77,8 @@ class WindPage extends StatelessWidget {
                     topRight: Radius.circular(30),
                   ),
                   border: Border()),
-              child: currentWind(
-                  windIcon, '$windDeg', '$windGust', '$windSpeed', '$location'),
+              child: currentWind(getWindDirectionIcon(windDeg), windDeg,
+                  '$windGust', '$windSpeed', '$location'),
             ),
           ),
           const Divider(),

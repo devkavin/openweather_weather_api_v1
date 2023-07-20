@@ -1,32 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:openweather_weather_api_v1/widgets/constants.dart';
+import '../widgets/constants.dart';
 
-import '../model/weather_model.dart';
+import '../model/location_model.dart';
 
 Widget currentPressure(Icon pressureIcon, String humidity, String location) {
-  Weather? weather;
-  weather?.cityName = location;
+  LocationInfo? locationInfo;
+  locationInfo?.cityName = location;
 
   return Center(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        pressureIcon,
-        const SizedBox(
-          height: 20.0,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+          child: SizedBox(height: 60, child: pressureIcon),
         ),
-        Text(
-          "$humidity hPa",
-          style: CustomTextStyle.addInfoMainFont,
+        SizedBox(
+          height: 80,
+          child: Text(
+            "$humidity hPa",
+            style: CustomTextStyle.addInfoMainFont,
+          ),
         ),
         const SizedBox(
           height: 10.0,
         ),
-        Text(
-            // cityName from Weather
-            location,
-            style: CustomTextStyle.titleFont),
+        SizedBox(
+          height: 40,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                CustomFAIcons.locationFAIcon,
+                color: CustomAppColors.smallIconColor,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                  // cityName from Weather
+                  location,
+                  style: CustomTextStyle.addInfoTitleFont),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 10.0,
+        ),
       ],
     ),
   );

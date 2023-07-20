@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:openweather_weather_api_v1/widgets/constants.dart';
+import '../widgets/constants.dart';
 
 class Search extends StatelessWidget {
   final TextEditingController controller;
@@ -31,6 +31,10 @@ class Search extends StatelessWidget {
         child: TextField(
           controller: controller,
           style: CustomTextStyle.searchFont,
+          cursorColor: CustomAppColors.textColor,
+          cursorOpacityAnimates: true,
+          cursorHeight: 25,
+          cursorRadius: const Radius.circular(50),
           decoration: const InputDecoration(
               hintText: 'Search City..',
               hintStyle: CustomTextStyle.searchFont,

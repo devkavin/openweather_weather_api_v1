@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:openweather_weather_api_v1/widgets/constants.dart';
-import 'widgets/constants.dart';
+import '../widgets/constants.dart';
 
-import 'screens/homepage.dart';
+import 'View/landing_page.dart';
 
 // IMPORTANT
 
-// ADD YOUR API KEY TO lib\api_calling\api_key.dart like this:
+// ADD THE API KEY TO lib\api_calling\api_key.dart when running the app in the
+// future like this:
 //
 // class ApiKey {
 //   static const String myApiKey = 'YOUR_API_KEY_HERE';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           surfaceVariant: Colors.lightBlueAccent,
         ),
       ),
-      home: const HomePage(),
+      home: const LandingPage(),
     );
   }
 }

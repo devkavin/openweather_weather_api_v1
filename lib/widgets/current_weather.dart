@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:openweather_weather_api_v1/widgets/constants.dart';
-
-import '../model/weather_model.dart';
-
-import 'package:intl/intl.dart';
+import '../widgets/constants.dart';
 
 Widget currentWeather(String weatherIcon, String weatherDescription,
     String temp, String location, String country) {

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:openweather_weather_api_v1/widgets/constants.dart';
-
-import '../model/weather_model.dart';
+import '../model/location_model.dart';
+import '../widgets/constants.dart';
 
 Widget currentHumidity(Icon humidityIcon, String humidity, String location) {
-  Weather? weather;
-  weather?.cityName = location;
+  LocationInfo? locationInfo;
+  locationInfo?.cityName = location;
 
   return Center(
     child: Column(

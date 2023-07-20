@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:openweather_weather_api_v1/model/one_call_weather_model.dart';
+import '../model/current_model.dart';
 import '../widgets/constants.dart';
 
-import '../model/weather_model.dart';
-import '../screens/feels_like.dart';
-import '../screens/humidity.dart';
-import '../screens/pressure.dart';
-import '../screens/wind.dart';
-import 'package:weather_icons/weather_icons.dart';
+import '../View/feels_like.dart';
+import '../View/humidity.dart';
+import '../View/pressure.dart';
+import '../View/wind.dart';
 
 class DrawerWidget extends StatefulWidget {
   final String selectedCity;
-  final Weather? data;
+  final OneCallWeather? oneCallData;
   const DrawerWidget({
     Key? key,
     required this.selectedCity,
-    this.data,
+    this.oneCallData,
   }) : super(key: key);
 
   @override
@@ -22,37 +22,37 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-  Weather? data;
+  Current? data;
+
+  // refresh drawer
+  void refreshDrawer() {
+    setState(() {
+      data = widget.oneCallData!.current;
+      debugPrint(
+          'refreshDrawer() called, windDeg from OC: ${widget.oneCallData!.current!.windDeg} for ${widget.selectedCity}, windDeg from data: ${data!.windDeg}');
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    refreshDrawer();
   }
 
   get location => widget.selectedCity;
-  get windSpeed => widget.data!.windSpeed;
-  get windDeg => widget.data!.windDeg;
-  get windGust => widget.data!.windGust;
-  get humidity => widget.data!.humidity;
-  get feelsLike => widget.data!.feelsLike;
-  get pressure => widget.data!.pressure;
+  get windSpeed => widget.oneCallData!.current!.windSpeed;
+  get windDeg => widget.oneCallData!.current!.windDeg;
+  get windGust => widget.oneCallData!.current!.windGust;
+  get humidity => widget.oneCallData!.current!.humidity;
+  get feelsLike => widget.oneCallData!.current!.feelsLike;
+  get pressure => widget.oneCallData!.current!.pressure;
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: <Widget>[
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              // transparent background
-              color: Colors.transparent,
-              // no divider line
-              border: Border(
-                bottom: BorderSide(
-                  color: Colors.transparent,
-                ),
-              ),
-            ),
+          SizedBox(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -91,131 +91,158 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     topRight: Radius.circular(30),
                   ),
                   border: Border()),
-              child: ListView(
-                children: [
-                  ListTile(
-                    title: Row(
-                      children: [
-                        Icon(CustomFAIcons.windFAIcon),
-                        const SizedBox(
-                          width: 20.0,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          child: Text(
-                            'Wind',
-                            style: CustomTextStyle.drawerFont,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                child: ListView(
+                  children: [
+                    ListTile(
+                      title: Row(
+                        children: [
+                          Icon(CustomFAIcons.windFAIcon),
+                          const SizedBox(
+                            width: 20.0,
                           ),
-                        ),
-                      ],
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            child: Text(
+                              'Wind',
+                              style: CustomTextStyle.drawerFont,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onTap: () async {
+                        // create a scaffold and pass data to it
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WindPage(
+                              location: location,
+                              windSpeed: windSpeed,
+                              windDeg: windDeg,
+                              windGust: windGust,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    onTap: () async {
-                      // create a scaffold and pass data to it
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => WindPage(
-                            location: location,
-                            windSpeed: windSpeed,
-                            windDeg: windDeg,
-                            windGust: windGust,
+                    ListTile(
+                      title: Row(
+                        children: [
+                          Icon(CustomFAIcons.humidityFAIcon),
+                          const SizedBox(
+                            width: 20.0,
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Row(
-                      children: [
-                        Icon(CustomFAIcons.humidityFAIcon),
-                        const SizedBox(
-                          width: 20.0,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          child: Text(
-                            'Humidity',
-                            style: CustomTextStyle.drawerFont,
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            child: Text(
+                              'Humidity',
+                              style: CustomTextStyle.drawerFont,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                      onTap: () async {
+                        // create a scaffold and pass data to it
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HumidityPage(
+                              location: location,
+                              humidity: humidity,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    onTap: () async {
-                      // create a scaffold and pass data to it
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HumidityPage(
-                            location: location,
-                            humidity: humidity,
+                    ListTile(
+                      title: Row(
+                        children: [
+                          Icon(CustomFAIcons.pressureFAIcon),
+                          const SizedBox(
+                            width: 20.0,
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Row(
-                      children: [
-                        Icon(CustomFAIcons.pressureFAIcon),
-                        const SizedBox(
-                          width: 20.0,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          child: Text(
-                            'Pressure',
-                            style: CustomTextStyle.drawerFont,
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            child: Text(
+                              'Pressure',
+                              style: CustomTextStyle.drawerFont,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                      onTap: () async {
+                        // create a scaffold and pass data to it
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PressurePage(
+                              location: location,
+                              pressure: pressure,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    onTap: () async {
-                      // create a scaffold and pass data to it
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PressurePage(
-                            location: location,
-                            pressure: pressure,
+                    ListTile(
+                      title: Row(
+                        children: [
+                          Icon(CustomFAIcons.feelsLikeFAIcon),
+                          const SizedBox(
+                            width: 20.0,
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Row(
-                      children: [
-                        Icon(CustomFAIcons.feelsLikeFAIcon),
-                        const SizedBox(
-                          width: 20.0,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          child: Text('Feels Like',
-                              style: CustomTextStyle.drawerFont),
-                        ),
-                      ],
-                    ),
-                    onTap: () async {
-                      // create a scaffold and pass data to it
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FeelsLikePage(
-                            location: location,
-                            feelsLike: feelsLike,
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            child: Text('Feels Like',
+                                style: CustomTextStyle.drawerFont),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                  const ListTile(
-                    title: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Divider(),
+                        ],
+                      ),
+                      onTap: () async {
+                        // create a scaffold and pass data to it
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FeelsLikePage(
+                              location: location,
+                              feelsLike: feelsLike,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                  )
-                ],
+                    // ListTile(
+                    //   title: Row(
+                    //     children: [
+                    //       Icon(CustomFAIcons.windFAIcon),
+                    //       const SizedBox(
+                    //         width: 20.0,
+                    //       ),
+                    //       const Padding(
+                    //         padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    //         child: Text(
+                    //           'TEST',
+                    //           style: CustomTextStyle.drawerFont,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    //   onTap: () {
+                    //     debugPrint(
+                    //         '${widget.selectedCity},${widget.oneCallData!.current!.windSpeed}');
+                    //   },
+                    // ),
+                    const ListTile(
+                      title: Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
